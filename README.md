@@ -1,4 +1,4 @@
-# us-states-game
+# US States Game
 
 This project is a game where the user guesses the names of the 50 US States.
 
