@@ -9,10 +9,43 @@ def setup_screen(image):
     return screen
 
 
+def set_text():
+    writer = turtle.Turtle()
+    writer.penup()
+    writer.hideturtle()
+    writer.color("black")
+    return writer
+
+
+def game(screen):
+    data = pandas.read_csv("50_states.csv")
+    state_list = data.state.to_list()
+    writer = set_text()
+    answer_state = ""
+
+    states_guessed = 0
+    guess_list = []
+    while len(guess_list) < 50 or answer_state != "quit":
+        answer_state = screen.textinput(title=f"{len(guess_list)}/50 States Correct",
+                                        prompt="What's another state's name?")
+
+        if answer_state is not None:
+            answer_state = answer_state.title()
+
+        if answer_state in state_list and answer_state not in guess_list:
+            data_index = data[data.state == answer_state].x.index
+            x_pos = data[data.state == answer_state].x[data_index].item()
+            y_pos = data[data.state == answer_state].y[data_index].item()
+            writer.goto(x=x_pos, y=y_pos)
+            writer.write(arg=answer_state)
+            guess_list.append(answer_state)
+
+
 def main():
     image = "blank_states_img.gif"
     screen = setup_screen(image)
     turtle.shape(image)
+    game(screen)
     screen.exitonclick()
 
 
