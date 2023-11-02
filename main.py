@@ -1,15 +1,19 @@
 import pandas
-from turtle import Screen
+import turtle
 
 
-def setup_screen():
-    screen = Screen()
+def setup_screen(image):
+    screen = turtle.Screen()
     screen.title("U.S. States Game")
+    screen.addshape(image)
     return screen
 
 
 def main():
-    screen = setup_screen()
+    image = "blank_states_img.gif"
+    screen = setup_screen(image)
+    turtle.shape(image)
+    screen.exitonclick()
 
 
 main()
