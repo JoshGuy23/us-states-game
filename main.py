@@ -50,11 +50,7 @@ def game(screen):
 
     # Add any states not guessed to a csv file for the user to review later.
     file_name = "states_to_learn.csv"
-    miss_list = []
-    if len(guess_list) < 50:
-        for state in state_list:
-            if state not in guess_list:
-                miss_list.append(state)
+    miss_list = [state for state in state_list if len(guess_list) < 50 and state not in guess_list]
     states_missed = {
         "States Missed: ": miss_list
     }
